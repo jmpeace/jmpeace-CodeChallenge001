@@ -16,7 +16,7 @@ import com.dharbortest.dao.CourseRepo;
 import com.dharbortest.model.Course;
 
 @RestController
-@RequestMapping("/class")
+@RequestMapping("/Class")
 public class CourseController {
 
 	@Autowired

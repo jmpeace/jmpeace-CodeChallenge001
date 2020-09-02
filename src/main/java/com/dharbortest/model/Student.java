@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Student {
 
@@ -24,6 +26,7 @@ public class Student {
 	private String lastname;
 
 	@ManyToMany(mappedBy="students")
+	@JsonIgnoreProperties("students")
     Set<Course> courses;
 	
 	public Student() {
