@@ -23,14 +23,21 @@ public class StudentController {
 	@Autowired
 	private StudentRepo repo;
 	
+	
 	@GetMapping
 	public List<Student> list(){
 		return repo.findAll();
 	}
 	
-	@GetMapping(value = "/{code}")
-	public Student list(@PathVariable("code") String code){
-		return repo.findByCode(code);
+	@GetMapping(value = "/{id}")
+	public Optional<Student> list(@PathVariable("id") Integer id){
+		return repo.findById(id);
+	}
+	
+	@GetMapping("/Class/{courseCode}")
+	public List<Student> listWhereCourse(@PathVariable String courseCode)
+	{
+		return repo.findByCourseCode(courseCode);
 	}
 	
 	@PostMapping
@@ -45,9 +52,9 @@ public class StudentController {
 		repo.save(student);
 	}
 	
-	@DeleteMapping(value = "/{code}")
-	public void eliminar(@PathVariable("code") String code)
+	@DeleteMapping(value = "/{id}")
+	public void eliminar(@PathVariable("id") Integer id)
 	{
-		repo.deleteByCode(code);
+		repo.deleteById(id);
 	}
 }

@@ -9,7 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -27,7 +27,7 @@ public class Course {
 
 	@ManyToMany
 	@JoinTable(name = "student_courses")
-	@JsonIgnoreProperties("courses")
+	@JsonIgnore
     Set<Student> students;
 	
 	public Course() {
@@ -38,6 +38,12 @@ public class Course {
 		this.code = code;
 		this.title = title;
 		this.description = description;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Course [code=" + code + ", title=" + title + "]";
 	}
 
 	public String getCode() {

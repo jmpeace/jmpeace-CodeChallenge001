@@ -51,7 +51,7 @@ public class LoadDatabase {
 			
 			Course course002 = coursesRepo.findByCode("C002");
 			if(course002==null)
-{
+			{
 				course002=new Course("C002","Language","Language Classes");
 				course002.setStudents(Sets.newHashSet(student001));
 				coursesRepo.save(course002);
@@ -65,7 +65,7 @@ public class LoadDatabase {
 				coursesRepo.save(course003);
 			}
 			
-
+			
 		
 			
 		};

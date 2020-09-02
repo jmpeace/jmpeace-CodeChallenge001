@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Student {
@@ -26,7 +26,7 @@ public class Student {
 	private String lastname;
 
 	@ManyToMany(mappedBy="students")
-	@JsonIgnoreProperties("students")
+	@JsonIgnore
     Set<Course> courses;
 	
 	public Student() {
@@ -39,6 +39,13 @@ public class Student {
 		this.lastname = lastname;
 	}
 	
+
+	@Override
+	public String toString() {
+		return "Student [student_id=" + student_id + ", code=" + code + ", firstname=" + firstname + ", lastname="
+				+ lastname + "]";
+	}
+
 	public int getStudent_id() {
 		return student_id;
 	}

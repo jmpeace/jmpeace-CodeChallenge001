@@ -1,7 +1,6 @@
 package com.dharbortest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +32,13 @@ public class CourseController {
 	@GetMapping(value = "/{code}")
 	public Course list(@PathVariable("code") String code){
 		return repo.findByCode(code);
+	}
+	
+	
+	@GetMapping("/Student/{studentId}")
+	public List<Course> listWhereCourse(@PathVariable Integer studentId)
+	{
+		return repo.findByStudentId(studentId);
 	}
 	
 	@PostMapping
