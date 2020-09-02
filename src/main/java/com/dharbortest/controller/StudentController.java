@@ -1,6 +1,7 @@
 package com.dharbortest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,11 @@ public class StudentController {
 		return repo.findAll();
 	}
 	
+	@GetMapping(value = "/{code}")
+	public Student list(@PathVariable("code") String code){
+		return repo.findByCode(code);
+	}
+	
 	@PostMapping
 	public void insert(@RequestBody Student student)
 	{
@@ -39,9 +45,9 @@ public class StudentController {
 		repo.save(student);
 	}
 	
-	@DeleteMapping(value="/id")
-	public void eliminar(@PathVariable("id") Integer id)
+	@DeleteMapping(value = "/{code}")
+	public void eliminar(@PathVariable("code") String code)
 	{
-		repo.deleteById(id);
+		repo.deleteByCode(code);
 	}
 }
