@@ -10,23 +10,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dharbortest.dao.CourseRepo;
 import com.dharbortest.model.Course;
+import com.dharbortest.service.CourseServ;
 
 @RestController
-@RequestMapping("/Class")
+@RequestMapping("/Classes")
 public class CourseController {
 
 	@Autowired
 	private CourseRepo repo;
 	
+	@Autowired
+	private CourseServ serv;
 	
 	@GetMapping
-	public List<Course> list(){
-
-		return repo.findAll();
+	public List<Course> list(
+			@RequestParam(name = "code",required = false) String code,
+			@RequestParam(name = "title",required = false) String title,
+			@RequestParam(name = "desc",required = false) String desc
+			){
+		
+		return serv.searchOrFindAll(code,title,desc);
 	}
 	
 	@GetMapping(value = "/{code}")

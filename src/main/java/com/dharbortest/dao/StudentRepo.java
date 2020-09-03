@@ -10,10 +10,11 @@ import com.dharbortest.model.Student;
 
 public interface StudentRepo extends JpaRepository<Student,Integer> {
 
-	Student findByCode(String code);
-	Student findByFirstnameContaining(String firstname);
-	Student findByLastnameContaining(String lastname);
-	Integer deleteByCode(String code);
+	public Student findByCode(String code);
+	public List<Student> findByCodeContaining(String code);
+	public List<Student> findByFirstnameContaining(String firstname);
+	public List<Student> findByLastnameContaining(String lastname);
+	public Integer deleteByCode(String code);
 	
 	@Query("SELECT s FROM Student s join s.courses sc where sc.code = :code")
     public List<Student> findByCourseCode(@Param("code") String code);
