@@ -49,6 +49,28 @@ public class CourseController {
 		return repo.findByStudentId(studentId);
 	}
 	
+	/**
+	 * Add student to class
+	 * @param code
+	 * @param studentId
+	 */
+	@PutMapping("/{code}/{studentId}")
+	public void subscribeToCourse(@PathVariable("code") String code,@PathVariable Integer studentId)
+	{
+		serv.subscribeToCourse(code,studentId);
+	}
+	
+	/**
+	 * Remove student from class
+	 * @param code
+	 * @param studentId
+	 */
+	@DeleteMapping("/{code}/{studentId}")
+	public void unSubscribeFromCourse(@PathVariable("code") String code,@PathVariable Integer studentId)
+	{
+		serv.unsubscribeFromCourse(code,studentId);
+	}
+	
 	@PostMapping
 	public void insert(@RequestBody Course course)
 	{

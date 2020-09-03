@@ -12,6 +12,10 @@ import com.dharbortest.model.Course;
 import com.dharbortest.model.Student;
 import com.google.common.collect.Sets;
 
+/**
+ * @author jmpaz
+ *
+ */
 @Configuration
 public class LoadDatabase {
 

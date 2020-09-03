@@ -1,6 +1,7 @@
 package com.dharbortest.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dharbortest.dao.CourseRepo;
+import com.dharbortest.dao.StudentRepo;
 import com.dharbortest.model.Course;
+import com.dharbortest.model.Student;
 
 @Service
 public class CourseServ {
@@ -20,6 +23,9 @@ public class CourseServ {
 	
 	@Autowired
 	private CourseRepo repo;
+	
+	@Autowired
+	private StudentRepo studentRepo;
 	
 	/**
 	 * Search for students using code, firstname or lastname if specified
@@ -62,6 +68,22 @@ public class CourseServ {
 
 	}
 
+	public void subscribeToCourse(String code, Integer studentId) {
+		
+		Course course = repo.findByCode(code);
+		Student student = studentRepo.findById(studentId).get();
+		course.getStudents().add(student);
+		repo.save(course);
+	}
+	
+	
+	public void unsubscribeFromCourse(String code, Integer studentId) {
+		
+		Course course = repo.findByCode(code);
+		Student student = studentRepo.findById(studentId).get();
+		course.getStudents().remove(student);
+		repo.save(course);
+	}
 	
 	
 
